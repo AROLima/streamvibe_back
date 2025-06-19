@@ -1,23 +1,29 @@
 package com.streamvibe.api.models.filme;
 
-//import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
+//@Table(name = "Filmes") annotoation para nomear a tabela
 
 public class Filme {
 
+    @Id // annotation para definir o atributo como chave primária. deve vir da importação do jakarta.(JPA)
+    @GeneratedValue (strategy = GenerationType.IDENTITY) //gera automaticamente o id no banco de dados.
+    private Integer id;
 
-    private int id;
     private String nome;
     private String estudio;
     private double duracao;
     private String imagem;
-    private String genero;
+
+    @Enumerated(EnumType.STRING)
+    private Genero genero;
+
     private String diretor;
     private String elenco;
     private String sinopse;
