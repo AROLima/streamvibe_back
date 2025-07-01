@@ -8,14 +8,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@Table(name = "Filmes") annotoation para nomear a tabela
-
 public class Filme {
 
-    @Id // annotation para definir o atributo como chave primária. deve vir da importação do jakarta.(JPA)
-    @GeneratedValue (strategy = GenerationType.IDENTITY) //gera automaticamente o id no banco de dados.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
     private String nome;
     private String estudio;
     private double duracao;
@@ -28,7 +26,9 @@ public class Filme {
     private String elenco;
     private String sinopse;
 
-    public Filme(DadosCadastroFilme dados){
+    private Boolean ativo = true;
+
+    public Filme(DadosCadastroFilme dados) {
         this.nome = dados.nome();
         this.estudio = dados.estudio();
         this.duracao = dados.duracao();
@@ -39,4 +39,7 @@ public class Filme {
         this.sinopse = dados.sinopse();
     }
 
+    public void exclusaoLogica() {
+        this.ativo = false;
+    }
 }
