@@ -26,7 +26,7 @@ public class Filme {
     private String elenco;
     private String sinopse;
 
-    private Boolean ativo = true;
+    private Boolean ativo = true; // por padrão o atributo ativo já recebe o valor true quando o filme é cadastrado
 
     public Filme(DadosCadastroFilme dados) {
         this.nome = dados.nome();
@@ -41,5 +41,17 @@ public class Filme {
 
     public void exclusaoLogica() {
         this.ativo = false;
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoFilme dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.diretor() != null) {
+            this.diretor = dados.diretor();
+        }
+        if (dados.estudio() != null) {
+            this.estudio = dados.estudio();
+        }
     }
 }

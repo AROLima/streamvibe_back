@@ -1,12 +1,8 @@
 package com.streamvibe.api.controllers;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.streamvibe.api.models.filme.*;
-
 import jakarta.transaction.Transactional;
 
 @RestController
@@ -32,12 +28,13 @@ public class FilmesController {
     }
 
     //Aqui fica o Update
-    // @PutMapping
-    // @Transactional
-    // public void atualizarFilme(@RequestBody Filme filme){
-    //     var filme = repository.findById(filme.id());
+    @PutMapping
+    @Transactional
+    public void atualizarFilme(@RequestBody DadosAtualizacaoFilme dados){
+        var filme = repository.getReferenceById(dados.id());
+        filme.atualizarInformacoes(dados);
 
-    // }
+    }
     
     //Aqui fica o DELETE real
     // @DeleteMapping("/{id}")
@@ -47,7 +44,6 @@ public class FilmesController {
     // }
 
     //Aqui vai ficar a exclusão lógica
-
     @DeleteMapping("/{id}")
     @Transactional
     
